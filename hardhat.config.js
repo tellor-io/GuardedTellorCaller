@@ -1,5 +1,9 @@
 require("@nomicfoundation/hardhat-toolbox");
 
+const INFURA_API_KEY = vars.get("INFURA_API_KEY");
+const PK = vars.get("PK");
+const ETHERSCAN_API_KEY = vars.get("ETHERSCAN_API_KEY");
+
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: {
@@ -32,5 +36,16 @@ module.exports = {
         }
       }
     ]
+  },
+  networks: {
+    sepolia: {
+      url: `https://sepolia.infura.io/v3/${INFURA_API_KEY}`,
+      accounts: [PK],
+    },
+  },
+  etherscan: {
+    apiKey: {
+      sepolia: ETHERSCAN_API_KEY,
+    },
   },
 };
